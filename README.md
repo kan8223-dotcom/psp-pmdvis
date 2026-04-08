@@ -100,9 +100,12 @@ component attributions.
   - UKKY (PPZ8 PCM driver)
   - BouKiCHi (pmdmini library wrapper)
 - **ymfm**: Aaron Giles (YM2608 FM/SSG synthesis, BSD-3-Clause)
-- **Media Engine integration**: m-c/d (mcidclan) — based on the
-  earlier version of his Media Engine library work, the predecessor
-  to psp-media-engine-custom-core (MECC). https://github.com/mcidclan
+- **Media Engine library**: m-c/d (mcidclan) —
+  [psp-media-engine-custom-core](https://github.com/mcidclan/psp-media-engine-custom-core)
+  (MECC, MIT license). This project bundles a build based on
+  [libmecore v2.0.1](https://github.com/pspdev/psp-packages/blob/master/libmecore/PSPBUILD)
+  from pspdev/psp-packages, with 4 local patches for environment
+  compatibility. See [NOTICE](NOTICE) for details.
 - **pspdev community**: pspsdk and the toolchain
 
 ## Author

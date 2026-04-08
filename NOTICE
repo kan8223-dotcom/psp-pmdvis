@@ -33,17 +33,24 @@ Third-party components
 
 - Media Engine library by m-c/d (mcidclan)
   Copyright (C) m-c/d
-  https://github.com/mcidclan
+  License: MIT
+  https://github.com/mcidclan/psp-media-engine-custom-core
 
-  This project bundles an earlier version of m-c/d's Media Engine
-  library work (the predecessor to psp-media-engine-custom-core / MECC),
-  used in seplugin mode with a kcall.prx kernel bridge. The library
-  files are located in the me-custom-core/ subdirectory of this repository.
+  This project bundles a build based on libmecore v2.0.1 from
+  pspdev/psp-packages, with local patches for environment
+  compatibility:
 
-  See the upstream author's GitHub for related projects including
-  the current version (MECC):
-  - https://github.com/mcidclan/psp-media-engine-custom-core
-  - https://github.com/mcidclan/psp-media-engine-reload
+  1. meLibLoadPrx() fallback for PLUGINS.TXT-based plugin loading
+  2. sceKernelExitGame() removal
+  3. me-lib.h C++ support (#ifdef __cplusplus, uintptr_t casts,
+     meLibMakeSharedUncachedMem macro)
+  4. Additional kcall.S file
+
+  The library files are located in the me-custom-core/ subdirectory
+  of this repository.
+
+  Upstream package:
+  https://github.com/pspdev/psp-packages/blob/master/libmecore/PSPBUILD
 
 ================================================================
 NOT included - user must provide
