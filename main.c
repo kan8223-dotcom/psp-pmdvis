@@ -10,6 +10,7 @@
 #include <psppower.h>
 /* MECC (psp-media-engine-custom-core) */
 #include "me-core.h"
+#include "me-core-mapper.h"
 
 #include <pspiofilemgr.h>
 #include <pspsdk.h>
@@ -1344,7 +1345,7 @@ void meLibOnProcess(void) {
     }
 
     /* 初回: pmdmini等のグローバル状態をMEキャッシュに取り込む */
-    meLibDcacheWritebackInvalidateAll();
+    meCoreDcacheWritebackInvalidateAll();
     meLibIcacheInvalidateAll();
 
     for (;;) {
@@ -1361,7 +1362,7 @@ void meLibOnProcess(void) {
         /* ME_CMD_FLUSH: トラック変更時のみ全キャッシュフラッシュ
          * PMDWIN状態をメインRAMに書き戻し+無効化してSCが正しく読めるようにする */
         if (sh[0] == ME_CMD_FLUSH) {
-            meLibDcacheWritebackInvalidateAll();
+            meCoreDcacheWritebackInvalidateAll();
             meLibIcacheInvalidateAll();
             sh[1] = ME_STAT_DONE;
             sh[0] = ME_CMD_NONE;
@@ -1370,7 +1371,7 @@ void meLibOnProcess(void) {
 
         /* sh[5]=1ならキャッシュ無効化 (トラック変更後、最初のレンダリング前) */
         if (sh[5]) {
-            meLibDcacheWritebackInvalidateAll();
+            meCoreDcacheWritebackInvalidateAll();
             meLibIcacheInvalidateAll();
             sh[5] = 0;
         }
@@ -1399,7 +1400,7 @@ void meLibOnProcess(void) {
             }
             /* Phase B: 44100Hzに切替 */
             pmd_setrate(44100);
-            meLibDcacheWritebackInvalidateAll();
+            meCoreDcacheWritebackInvalidateAll();
             sh[46] = pre_target; /* プリレンダ完了マーク */
             /* Phase C: DECODE_LOOP (以下と同一処理にfall through) */
             short *pcm_base = (short *)(0x80000000 | sh[2]);
@@ -1412,7 +1413,7 @@ void meLibOnProcess(void) {
             sh[41] = 0;
             while (block < max_blocks && !sh[42]) {
                 if (sh[5]) {
-                    meLibDcacheWritebackInvalidateAll();
+                    meCoreDcacheWritebackInvalidateAll();
                     meLibIcacheInvalidateAll();
                     sh[5] = 0;
                 }
@@ -1421,14 +1422,14 @@ void meLibOnProcess(void) {
                 short *render_dst = use_edram2 ? edram_buf : dst;
                 pmd_renderer(render_dst, ns);
                 if (use_edram2) {
-                    meLibDcacheWritebackRange((unsigned int)edram_buf, byte_size);
+                    meCoreDcacheWritebackRange((void*)edram_buf, byte_size);
                     meCoreMemcpy((unsigned int*)dst, (unsigned int*)edram_buf, byte_size);
                 }
-                meLibDcacheWritebackRange((unsigned int)dst, byte_size);
+                meCoreDcacheWritebackRange((void*)dst, byte_size);
                 pmd_fill_vis_data(&sh[8]);
                 unsigned int *vdst = vis_base + block * VIS_SIZE;
                 for (int vi = 0; vi < VIS_SIZE; vi++) vdst[vi] = sh[8 + vi];
-                meLibDcacheWritebackRange((unsigned int)vdst, VIS_SIZE * sizeof(unsigned int));
+                meCoreDcacheWritebackRange((void*)vdst, VIS_SIZE * sizeof(unsigned int));
                 /* FMPデータ (PRERENDER_DECODE) */
                 {
                     unsigned int *fmp_base_ptr = sh[57] ? (unsigned int *)(0x80000000 | sh[57]) : 0;
@@ -1437,7 +1438,7 @@ void meLibOnProcess(void) {
                         unsigned int *fdst = fmp_base_ptr + block * FMP_SIZE;
                         for (int fi = 0; fi < FMP_SIZE; fi++)
                             fdst[fi] = sh[FMP_SH_BASE + fi];
-                        meLibDcacheWritebackRange((unsigned int)fdst, FMP_SIZE * sizeof(unsigned int));
+                        meCoreDcacheWritebackRange((void*)fdst, FMP_SIZE * sizeof(unsigned int));
                     }
                 }
                 block++;
@@ -1494,7 +1495,7 @@ void meLibOnProcess(void) {
                     }
                 }
                 if (sh[5]) {
-                    meLibDcacheWritebackInvalidateAll();
+                    meCoreDcacheWritebackInvalidateAll();
                     meLibIcacheInvalidateAll();
                     sh[5] = 0;
                 }
@@ -1533,10 +1534,10 @@ void meLibOnProcess(void) {
                 }
 
                 if (use_edram2) {
-                    meLibDcacheWritebackRange((unsigned int)edram_buf, byte_size);
+                    meCoreDcacheWritebackRange((void*)edram_buf, byte_size);
                     meCoreMemcpy((unsigned int*)dst, (unsigned int*)edram_buf, byte_size);
                 }
-                meLibDcacheWritebackRange((unsigned int)dst, byte_size);
+                meCoreDcacheWritebackRange((void*)dst, byte_size);
 
                 /* vis+fmp: WAVエクスポート時はスキップ (buf_cap>0) */
                 if (buf_cap == 0) {
@@ -1544,7 +1545,7 @@ void meLibOnProcess(void) {
                     unsigned int *vdst = vis_base + block * VIS_SIZE;
                     for (int vi = 0; vi < VIS_SIZE; vi++)
                         vdst[vi] = sh[8 + vi];
-                    meLibDcacheWritebackRange((unsigned int)vdst, VIS_SIZE * sizeof(unsigned int));
+                    meCoreDcacheWritebackRange((void*)vdst, VIS_SIZE * sizeof(unsigned int));
                     /* FMPデータ */
                     unsigned int *fmp_base_ptr = sh[57] ? (unsigned int *)(0x80000000 | sh[57]) : 0;
                     if (fmp_base_ptr) {
@@ -1552,7 +1553,7 @@ void meLibOnProcess(void) {
                         unsigned int *fdst = fmp_base_ptr + block * FMP_SIZE;
                         for (int fi = 0; fi < FMP_SIZE; fi++)
                             fdst[fi] = sh[FMP_SH_BASE + fi];
-                        meLibDcacheWritebackRange((unsigned int)fdst, FMP_SIZE * sizeof(unsigned int));
+                        meCoreDcacheWritebackRange((void*)fdst, FMP_SIZE * sizeof(unsigned int));
                     }
                 }
 
@@ -1599,12 +1600,12 @@ void meLibOnProcess(void) {
 
         if (use_edram) {
             /* eDRAM → メインRAM転送 */
-            meLibDcacheWritebackRange((unsigned int)edram_buf, byte_size);
+            meCoreDcacheWritebackRange((void*)edram_buf, byte_size);
             meCoreMemcpy((unsigned int*)main_buf, (unsigned int*)edram_buf, byte_size);
-            meLibDcacheWritebackRange((unsigned int)main_buf, byte_size);
+            meCoreDcacheWritebackRange((void*)main_buf, byte_size);
         } else {
             /* メインRAM直接レンダ → dcache writeback */
-            meLibDcacheWritebackRange((unsigned int)main_buf, byte_size);
+            meCoreDcacheWritebackRange((void*)main_buf, byte_size);
         }
 
         sh[1] = ME_STAT_DONE;
