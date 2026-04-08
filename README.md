@@ -32,6 +32,9 @@ handles visualization.
 ## Installation
 
 1. Copy `EBOOT.PBP` to `ms0:/PSP/GAME/PMDVIS/`
+   The Media Engine kernel module (`kcall.prx`) is embedded in the
+   executable and loaded automatically at runtime — no separate plugin
+   setup is required.
 2. (Optional) Place your YM2608 ADPCM ROM at
    `ms0:/PSP/GAME/PMDVIS/ym2608_adpcm_rom.bin`
    Without this file, rhythm channels are silent but the player works normally.

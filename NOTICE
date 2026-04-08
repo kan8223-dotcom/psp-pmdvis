@@ -40,7 +40,8 @@ Third-party components
   pspdev/psp-packages, with local patches for environment
   compatibility:
 
-  1. meLibLoadPrx() fallback for PLUGINS.TXT-based plugin loading
+  1. meLibLoadPrx() return-value check removal (graceful fallback
+     when kcall.prx is already loaded by the environment)
   2. sceKernelExitGame() removal
   3. me-lib.h C++ support (#ifdef __cplusplus, uintptr_t casts,
      meLibMakeSharedUncachedMem macro)
