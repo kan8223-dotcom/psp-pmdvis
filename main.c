@@ -8,7 +8,7 @@
 /* pspaudiolib不使用 — sceAudio直接 */
 #include <pspaudio.h>
 #include <psppower.h>
-/* Tiny-ME (psp-media-engine-custom-core) */
+/* MECC (psp-media-engine-custom-core) */
 #include "me-core.h"
 
 #include <pspiofilemgr.h>
@@ -1249,7 +1249,7 @@ static volatile int audio_alive = 1;
 static int audio_ch = -1;
 
 /* ============================================================
- *  ME (Media Engine) — Tiny-ME (mcidclan) 方式
+ *  ME (Media Engine) — MECC (mcidclan) 方式
  *  meLibOnProcess()がME上で実行される
  *  uncachedメモリでSC↔ME通信
  * ============================================================ */
@@ -3244,7 +3244,7 @@ int main(void) {
         memset(ring_fmp, 0, rf_sz);
     }
 
-    /* ME (Tiny-ME) 初期化 */
+    /* ME (MECC) 初期化 */
     me_shared_uncached = (volatile unsigned int *)(0x40000000 | (unsigned int)_me_shared);
     memset((void *)_me_shared, 0, sizeof(_me_shared));
     sceKernelDcacheWritebackInvalidateAll();

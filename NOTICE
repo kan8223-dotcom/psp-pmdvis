@@ -38,7 +38,7 @@ Third-party components
   This project bundles an earlier version of m-c/d's Media Engine
   library work (the predecessor to psp-media-engine-custom-core / MECC),
   used in seplugin mode with a kcall.prx kernel bridge. The library
-  files are located in the tiny-me/ subdirectory of this repository.
+  files are located in the me-custom-core/ subdirectory of this repository.
 
   See the upstream author's GitHub for related projects including
   the current version (MECC):

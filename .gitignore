@@ -7,7 +7,7 @@
 build/
 PARAM.SFO
 
-# Keep source PRX like tiny-me/build/kernel/kcall.prx
+# Keep source PRX like me-custom-core/build/kernel/kcall.prx
 # Existing tracked files are not affected by .gitignore
 
 # Editor / OS

@@ -25,16 +25,16 @@ export PATH=$PSPDEV/bin:$PATH
 PMDVIS uses [intraFont](https://github.com/pspdev/intraFont) for text rendering.
 This is typically included with the pspdev SDK.
 
-### Tiny-ME (Media Engine)
+### ME Custom Core (MECC)
 
-The `tiny-me/` directory contains [psp-media-engine-custom-core](https://github.com/mcidclan/psp-media-engine-custom-core) (MECC) by m-c/d.
+The `me-custom-core/` directory contains [psp-media-engine-custom-core](https://github.com/mcidclan/psp-media-engine-custom-core) (MECC) by m-c/d.
 It is bundled in the repository — no separate setup needed.
 
-The pre-built `tiny-me/build/libme-core.a` and `tiny-me/build/kernel/kcall.prx`
+The pre-built `me-custom-core/build/libme-core.a` and `me-custom-core/build/kernel/kcall.prx`
 are included. If you need to rebuild:
 
 ```bash
-cd tiny-me
+cd me-custom-core
 mkdir -p build && cd build
 cmake .. && make
 ```
@@ -51,7 +51,7 @@ psp-pmdvis/
     src/
       pmdwin/          — PMDWin core
       ymfm/            — YM2608 FM synthesis (ymfm + OPNA wrapper)
-  tiny-me/             — Media Engine custom core (MECC)
+  me-custom-core/      — Media Engine custom core (MECC)
     build/
       libme-core.a     — Pre-built ME library
       kernel/

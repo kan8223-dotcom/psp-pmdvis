@@ -10,12 +10,12 @@ OBJS     = main.o \
            pmdmini.o pmdwincore.o pmdwin.o opnaw.o p86drv.o ppsdrv.o ppz8l.o table.o util.o \
            opna.o file_fmgen.o sjis2utf.o ymfm_adpcm.o ymfm_ssg.o ymfm_opn.o
 
-INCDIR   = pmdmini/src pmdmini/src/pmdwin pmdmini/src/ymfm . tiny-me
+INCDIR   = pmdmini/src pmdmini/src/pmdwin pmdmini/src/ymfm . me-custom-core
 CFLAGS   = -O3 -G0 -Wall -DPSP -fno-pic -funroll-loops
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti -fpermissive
 ASFLAGS  = $(CFLAGS)
 
-LIBDIR   = tiny-me/build
+LIBDIR   = me-custom-core/build
 LDFLAGS  =
 LIBS     = -lme-core -lintrafont -lpspgu -lpspge -lpspaudio -lpsppower -lpspctrl -lpsputility -lm -lstdc++ -lsupc++
 
