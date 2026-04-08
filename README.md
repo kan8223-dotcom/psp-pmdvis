@@ -102,7 +102,6 @@ component attributions.
 - **ymfm**: Aaron Giles (YM2608 FM/SSG synthesis, BSD-3-Clause)
 - **psp-media-engine-custom-core (MECC)**: m-c/d (mcidclan)
 - **pspdev community**: pspsdk and the toolchain
-- **z2442, m-c/d, Nuclear Kommando**: community support
 
 ## Author
 

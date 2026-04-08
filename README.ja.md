@@ -100,7 +100,6 @@ GPL-3.0。サードパーティコンポーネントの帰属については
 - **ymfm**: Aaron Giles (YM2608 FM/SSG 合成、BSD-3-Clause)
 - **psp-media-engine-custom-core (MECC)**: m-c/d (mcidclan)
 - **pspdev コミュニティ**: pspsdk およびツールチェーン
-- **z2442, m-c/d, Nuclear Kommando**: コミュニティサポート
 
 ## 作者
 
