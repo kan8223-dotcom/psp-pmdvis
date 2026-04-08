@@ -98,7 +98,9 @@ GPL-3.0。サードパーティコンポーネントの帰属については
   - UKKY (PPZ8 PCM ドライバ原作)
   - BouKiCHi (pmdmini ライブラリラッパー)
 - **ymfm**: Aaron Giles (YM2608 FM/SSG 合成、BSD-3-Clause)
-- **psp-media-engine-custom-core (MECC)**: m-c/d (mcidclan)
+- **Media Engine 統合**: m-c/d (mcidclan) — 同氏の Media Engine
+  ライブラリの初期版 (psp-media-engine-custom-core / MECC の前身)
+  をベースに使用。https://github.com/mcidclan
 - **pspdev コミュニティ**: pspsdk およびツールチェーン
 
 ## 作者

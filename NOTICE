@@ -31,11 +31,19 @@ Third-party components
   Used for YM2608 (OPNA) FM and SSG synthesis. Bundled in
   pmdmini/src/ymfm/. Full license available in that directory.
 
-- psp-media-engine-custom-core (MECC)
-  Copyright (C) m-c/d (mcidclan)
-  https://github.com/mcidclan/psp-media-engine-custom-core
-  Bundled in tiny-me/ subdirectory. Required for Media Engine offload.
-  See upstream repository for license details.
+- Media Engine library by m-c/d (mcidclan)
+  Copyright (C) m-c/d
+  https://github.com/mcidclan
+
+  This project bundles an earlier version of m-c/d's Media Engine
+  library work (the predecessor to psp-media-engine-custom-core / MECC),
+  used in seplugin mode with a kcall.prx kernel bridge. The library
+  files are located in the tiny-me/ subdirectory of this repository.
+
+  See the upstream author's GitHub for related projects including
+  the current version (MECC):
+  - https://github.com/mcidclan/psp-media-engine-custom-core
+  - https://github.com/mcidclan/psp-media-engine-reload
 
 ================================================================
 NOT included - user must provide
