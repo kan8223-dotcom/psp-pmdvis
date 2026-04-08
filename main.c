@@ -1,4 +1,4 @@
-/* PSP PMD Visualizer — sceGu + pmdmini + TinySoundFont + sceAudio */
+/* PSP PMD Visualizer — sceGu + pmdmini + MECC + sceAudio */
 
 #include <pspkernel.h>
 #include <pspdisplay.h>
