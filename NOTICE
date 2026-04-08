@@ -15,34 +15,40 @@ GNU General Public License for more details.
 Third-party components
 ================================================================
 
-pmdmini (GPL-2.0-or-later)
-  PMD sound engine. Original authors:
-  M.Kajihara (PMD), C60 (PMDWin), cisc (M88/OPNA),
-  Ukky (PPZ8), AGAWA Koji (PMDXMMS), BouKiCHi (pmdmini)
+- pmdmini (GPL-2.0-or-later)
+  PMD sound engine. Authors of bundled sources actually used in this build:
+    M.Kajihara  - PMD original author (PC-98)
+    C60         - PMDWin Windows port (pmdwincore, pmdwin, opnaw, p86drv,
+                  ppsdrv, table, util, sjis2utf, ppz8l Win port)
+    UKKY        - PPZ8 PCM driver original author (ppz8l)
+    BouKiCHi    - pmdmini library wrapper (pmdmini.cpp)
   https://github.com/mistydemeo/pmdmini
   Upgraded to GPL-3.0 under the "or-later" clause.
 
-ymfm (BSD-3-Clause)
+- ymfm (BSD-3-Clause)
   Copyright (C) 2021-2022, Aaron Giles
   https://github.com/aaronsgiles/ymfm
-  Bundled as part of pmdmini. Full license text available in the
-  pmdmini/src/ymfm/ directory.
+  Used for YM2608 (OPNA) FM and SSG synthesis. Bundled in
+  pmdmini/src/ymfm/. Full license available in that directory.
 
-psp-media-engine-custom-core / MECC (MIT)
-  Copyright (C) 2025 m-c/d (mcidclan)
+- psp-media-engine-custom-core (MECC)
+  Copyright (C) m-c/d (mcidclan)
   https://github.com/mcidclan/psp-media-engine-custom-core
-  Bundled in tiny-me/ subdirectory. See tiny-me/LICENSE.md.
+  Bundled in tiny-me/ subdirectory. Required for Media Engine offload.
+  See upstream repository for license details.
 
 ================================================================
 NOT included - user must provide
 ================================================================
 
-YM2608 ADPCM Rhythm ROM (Yamaha Corporation)
-  The Yamaha YM2608 ADPCM rhythm ROM is copyrighted by Yamaha and
-  is NOT redistributed with this project. Users who wish to enable
-  rhythm playback must obtain the ROM from their own hardware or
-  legitimate sources, and place the file at:
-    ms0:/PSP/GAME/PMDVIS/ym2608_adpcm_rom.bin
+- YM2608 ADPCM Rhythm ROM (Yamaha Corporation)
+  The Yamaha YM2608 ADPCM rhythm ROM is copyrighted by Yamaha and is
+  NOT redistributed with this project. Users who wish to enable rhythm
+  playback must obtain the ROM from their own hardware or legitimate
+  sources, and place the file at:
 
-  PMDVIS will operate without this file, but rhythm channels will
-  be silent.
+      ms0:/PSP/GAME/PMDVIS/ym2608_adpcm_rom.bin
+      (or ef0:/... on PSP Go)
+
+  PMDVIS will operate without this file, but rhythm channels will be
+  silent.

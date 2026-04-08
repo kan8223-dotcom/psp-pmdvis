@@ -92,8 +92,12 @@ GPL-3.0。サードパーティコンポーネントの帰属については
 
 ## クレジット
 
-- **pmdmini / PMD サウンドエンジン**: M.Kajihara, C60, cisc, Ukky, AGAWA Koji, BouKiCHi
-- **ymfm**: Aaron Giles
+- **pmdmini / PMD サウンドエンジン**:
+  - M.Kajihara (PMD原作、PC-98)
+  - C60 (PMDWin Windows 移植 — pmdwincore, pmdwin, opnaw, p86drv, ppsdrv, table, util, sjis2utf)
+  - UKKY (PPZ8 PCM ドライバ原作)
+  - BouKiCHi (pmdmini ライブラリラッパー)
+- **ymfm**: Aaron Giles (YM2608 FM/SSG 合成、BSD-3-Clause)
 - **psp-media-engine-custom-core (MECC)**: m-c/d (mcidclan)
 - **pspdev コミュニティ**: pspsdk およびツールチェーン
 - **z2442, m-c/d, Nuclear Kommando**: コミュニティサポート

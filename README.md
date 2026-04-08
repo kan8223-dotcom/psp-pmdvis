@@ -94,8 +94,12 @@ component attributions.
 
 ## Credits
 
-- **pmdmini / PMD sound engine**: M.Kajihara, C60, cisc, Ukky, AGAWA Koji, BouKiCHi
-- **ymfm**: Aaron Giles
+- **pmdmini / PMD sound engine**:
+  - M.Kajihara (PMD original author, PC-98)
+  - C60 (PMDWin Windows port — pmdwincore, pmdwin, opnaw, p86drv, ppsdrv, table, util, sjis2utf)
+  - UKKY (PPZ8 PCM driver)
+  - BouKiCHi (pmdmini library wrapper)
+- **ymfm**: Aaron Giles (YM2608 FM/SSG synthesis, BSD-3-Clause)
 - **psp-media-engine-custom-core (MECC)**: m-c/d (mcidclan)
 - **pspdev community**: pspsdk and the toolchain
 - **z2442, m-c/d, Nuclear Kommando**: community support
