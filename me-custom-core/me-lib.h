@@ -32,7 +32,6 @@
       (volatile type*)(UNCACHED_USER_MASK | (uintptr_t)_meLib_##name)
 #endif
 
-
 #define meLibMakeMemSegVar(name, mask, type) ((volatile type* const)((mask) | (type)name))
 
 #define defineVar(name) \
