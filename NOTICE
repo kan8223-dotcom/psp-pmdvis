@@ -1,0 +1,48 @@
+PSP PMD Visualizer (PMDVIS)
+Copyright (C) 2026 Tanaka (kan8223-dotcom)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+================================================================
+Third-party components
+================================================================
+
+pmdmini (GPL-2.0-or-later)
+  PMD sound engine. Original authors:
+  M.Kajihara (PMD), C60 (PMDWin), cisc (M88/OPNA),
+  Ukky (PPZ8), AGAWA Koji (PMDXMMS), BouKiCHi (pmdmini)
+  https://github.com/mistydemeo/pmdmini
+  Upgraded to GPL-3.0 under the "or-later" clause.
+
+ymfm (BSD-3-Clause)
+  Copyright (C) 2021-2022, Aaron Giles
+  https://github.com/aaronsgiles/ymfm
+  Bundled as part of pmdmini. Full license text available in the
+  pmdmini/src/ymfm/ directory.
+
+psp-media-engine-custom-core / MECC (MIT)
+  Copyright (C) 2025 m-c/d (mcidclan)
+  https://github.com/mcidclan/psp-media-engine-custom-core
+  Bundled in tiny-me/ subdirectory. See tiny-me/LICENSE.md.
+
+================================================================
+NOT included - user must provide
+================================================================
+
+YM2608 ADPCM Rhythm ROM (Yamaha Corporation)
+  The Yamaha YM2608 ADPCM rhythm ROM is copyrighted by Yamaha and
+  is NOT redistributed with this project. Users who wish to enable
+  rhythm playback must obtain the ROM from their own hardware or
+  legitimate sources, and place the file at:
+    ms0:/PSP/GAME/PMDVIS/ym2608_adpcm_rom.bin
+
+  PMDVIS will operate without this file, but rhythm channels will
+  be silent.

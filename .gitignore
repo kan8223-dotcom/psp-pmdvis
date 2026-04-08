@@ -1,0 +1,29 @@
+# PSP build artifacts
+*.o
+*.a
+*.prx
+*.elf
+*.pyc
+build/
+PARAM.SFO
+
+# Keep source PRX like tiny-me/build/kernel/kcall.prx
+# Existing tracked files are not affected by .gitignore
+
+# Editor / OS
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/
+
+# Logs / temp
+*.log
+*.txt
+!/README*.md
+!/NOTICE
+!/LICENSE
+/tmp/
+
+# Backups (private repo only)
+backups/
