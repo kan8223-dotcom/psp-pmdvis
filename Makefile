@@ -35,6 +35,5 @@ PSPSDK=$(shell /usr/local/pspdev/bin/psp-config --pspsdk-path)
 include $(PSPSDK)/lib/build.mak
 
 build-and-deploy: all
-	@echo "=== AUTO DEPLOY ==="
 	@bash $(CURDIR)/deploy.sh
 

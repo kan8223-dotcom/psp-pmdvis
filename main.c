@@ -691,7 +691,7 @@ static void start_track(int idx) {
         lc_me_busy = 1;
         lc_decode_start_us = sceKernelGetSystemTimeLow();
 
-        /* プリフィル待機中に「Please Wait...」表示 */
+        /* プリフィル待機中に「Please Wait...」表示 + GPL notice */
         sceGuStart(GU_DIRECT, gu_list);
         sceGuClearColor(0xFF000000);
         sceGuClear(GU_COLOR_BUFFER_BIT);
@@ -2667,8 +2667,8 @@ static void draw_song_list(void) {
     int total = num_tracks;
     emit_rect(0, 0, SCREEN_W, SCREEN_H, make_rgba(5, 5, 15, 255));
 
-    /* タイトル */
-    { char pmd_label[16]; snprintf(pmd_label, sizeof(pmd_label), "PMD %d", num_tracks);
+    /* タイトル + GPL notice Section 5d */
+    { char pmd_label[48]; snprintf(pmd_label, sizeof(pmd_label), "PMD%d GPL3", num_tracks);
       draw_text(16.0f, 5.0f, 0.75f, pmd_label, make_rgba(255,255,255,255)); }
 
     if (total == 0) { draw_text(LIST_LEFT_X, LIST_TOP_Y+10, 0.8f, "No tracks", make_rgba(180,80,80,255)); flush_draw(); return; }
@@ -3189,6 +3189,7 @@ int main(void) {
     scePowerSetClockFrequency(333, 333, 166); /* MAX clock */
 
     detect_storage();
+    log_open();
     gu_init();
     sceCtrlSetSamplingCycle(0);
     sceCtrlSetSamplingMode(PSP_CTRL_MODE_DIGITAL);
@@ -3197,15 +3198,18 @@ int main(void) {
     intraFontInit();
     g_font = intraFontLoad("flash0:/font/ltn0.pgf",
                            INTRAFONT_CACHE_ALL | INTRAFONT_STRING_ASCII);
-    if (g_font) intraFontSetStyle(g_font, 0.7f, 0xFFFFFFFF, 0xFF000000, 0.0f, INTRAFONT_ALIGN_LEFT);
+    if (g_font) {
+        intraFontSetStyle(g_font, 0.7f, 0xFFFFFFFF, 0xFF000000, 0.0f, INTRAFONT_ALIGN_LEFT);
+        log_write("FONT LOAD OK: intraFont ready");
+    } else {
+        log_write("FONT LOAD FAILED: g_font is NULL, fallback to 7seg");
+    }
     /* リズムROM読み込み (pmd_initより前) */
     load_rhythm_rom();
     /* pmdmini初期化 */
     char pcmdir[] = "";
     pmd_init(pcmdir);
     pmd_setrate(PSP_SAMPLERATE);
-
-    log_open();
     log_write("=== PMD Visualizer START ===");
 
     init_tracks();
